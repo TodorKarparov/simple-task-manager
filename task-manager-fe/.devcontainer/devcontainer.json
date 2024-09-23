@@ -1,0 +1,69 @@
+{
+  "name": "React Vite Mobx Dev Container",
+  "dockerFile": "Dockerfile",
+  "runArgs": [
+    "-p=5173:5173"
+    // "--dns=8.8.8.8"
+  ],
+  "context": "..",
+  "remoteUser": "ubuntu",
+  "workspaceMount": "source=/Users/todork/projects/task-manager/task-manager-fe,target=/home/ubuntu/workspace/task-manager-fe,type=bind",
+  "workspaceFolder": "/home/ubuntu/workspace/task-manager-fe",
+  "postCreateCommand": "cd /home/ubuntu/workspace/task-manager-fe && rm -rf node_modules && rm -f package-lock.json && npm install",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "extensions.verifySignature": false
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint", // ESLint
+        "esbenp.prettier-vscode", // Prettier code formatter
+        "bierner.color-info", // JSX and CSS color information
+        "jpoissonnier.vscode-styled-components", // Styled components
+        "visualstudioexptteam.vscodeintellicode", // AI-assisted development
+        "eg2.vscode-npm-script", // NPM support for VS code
+        "christian-kohler.npm-intellisense", // Autocompletes npm modules in import statements
+        "cssho.vscode-svgviewer", // SVG viewer
+        "eamodio.gitlens", // IDE Git information
+        "ms-azuretools.vscode-docker", // Docker integration and linting
+        "shardulm94.trailing-spaces", // Show trailing spaces
+        "davidanson.vscode-markdownlint",
+        "IBM.output-colorizer", // Colorize your output/test logs
+        "Gruntfuggly.todo-tree", // Highlights TODO comments
+        "stkb.rewrap", // rewrap comments after n characters on one line
+        "vscode-icons-team.vscode-icons", // Better file extension icons
+        "github.vscode-pull-request-github", // Github interaction
+        "esbenp.prettier-vscode",
+        "yoavbls.pretty-ts-errors",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "ms-azuretools.vscode-docker"
+      ],
+      "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+      ],
+      "editor.formatOnSave": true,
+      "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": false
+      },
+      "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": false
+      },
+      "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": false
+      },
+      "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": false
+      },
+      "prettier-eslint.eslintIntegration": true,
+      "terminal.integrated.shell.linux": "/bin/bash"
+    }
+  }
+}
