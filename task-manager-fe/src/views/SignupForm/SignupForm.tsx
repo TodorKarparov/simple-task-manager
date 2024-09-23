@@ -33,11 +33,11 @@ const SignupFormView = () => {
           <Flex direction="column" align="center" width="100%">
             <div className="plane-svg"></div>
             <Heading size="md" color="#142333">
-              Welcome to Infinity Tasks
+              Welcome to the Simple Task Manager
             </Heading>
           </Flex>
           <Flex direction="column" width="100%" gap="16px">
-          <Box width="100%">
+            <Box width="100%">
               <FormLabel color="#8797A8">Name</FormLabel>
               <Input
                 type="text"

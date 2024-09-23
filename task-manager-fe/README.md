@@ -17,12 +17,12 @@ If you are developing a production application, we recommend updating the config
 export default {
   // other rules...
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.node.json"],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
@@ -65,4 +65,3 @@ export default {
 4. **Services**: Dedicated service files (like authService.ts) handle API requests. These abstract away the API logic from UI components, making your application easier to maintain.
 
 5. **Pages**: Represents the components that are mapped to routes. Each page component corresponds to a route in your application.
-

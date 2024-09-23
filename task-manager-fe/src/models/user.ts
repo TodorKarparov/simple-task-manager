@@ -51,11 +51,14 @@ export class UserModel implements User {
 
   static async createUser(user: User): Promise<User | void> {
     try {
-        const response = await axios.post<User>('http://localhost:8080/api/collections/user/records', user);
-        console.log('User created successfully:', response.data);
-        return response.data;
+      const response = await axios.post<User>(
+        "http://localhost:8080/api/collections/user/records",
+        user
+      );
+      console.log("User created successfully:", response.data);
+      return response.data;
     } catch (error) {
-        console.error('Error creating user:', error);
+      console.error("Error creating user:", error);
     }
-}
+  }
 }
