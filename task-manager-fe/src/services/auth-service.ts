@@ -4,7 +4,6 @@ import { LoginRequest } from "../dto/request/login-request.dto";
 
 class AuthService {
   async login(loginRequest: LoginRequest): Promise<AuthResponse> {
-    
     try {
       const response = await axios.post<AuthResponse>(
         "http://localhost:8080/api/collections/user/auth-with-password",

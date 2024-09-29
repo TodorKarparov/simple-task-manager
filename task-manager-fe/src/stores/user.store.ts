@@ -3,7 +3,6 @@ import { LoginRequest } from "../dto/request/login-request.dto";
 import authService from "../services/auth-service";
 
 class UserStore {
-
   private id?: string;
   private username?: string;
   private email?: string;
