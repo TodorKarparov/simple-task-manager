@@ -38,7 +38,7 @@ class LoginFormViewModel {
           identity: this.email,
           password: this.password,
         })
-        .then((response: AuthResponse) => {
+        .then(() => {
           console.log("User logged in successfully:", userStore.getName);
           this.navigate("/");
         });
