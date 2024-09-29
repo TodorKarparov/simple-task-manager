@@ -1,26 +1,23 @@
 import axios from "axios";
-import { User } from "../models/user";
-
-interface JwtResponse {
-  token: string;
-  user: User;
-}
+import { AuthResponse } from "../dto/response/auth-response.dto";
+import { LoginRequest } from "../dto/request/login-request.dto";
 
 class AuthService {
-  static async authenticate(authDetails: {
-    identity: string;
-    password: string;
-  }): Promise<JwtResponse | void> {
+  async login(loginRequest: LoginRequest): Promise<AuthResponse> {
+    
     try {
-      const response = await axios.post<JwtResponse>(
+      const response = await axios.post<AuthResponse>(
         "http://localhost:8080/api/collections/user/auth-with-password",
-        authDetails
+        loginRequest
       );
       return response.data;
     } catch (error) {
       console.error("Error creating user:", error);
+      throw error;
     }
   }
 }
 
-export default AuthService;
+const authService = new AuthService();
+
+export default authService;

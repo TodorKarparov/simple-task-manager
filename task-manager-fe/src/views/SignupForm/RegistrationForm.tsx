@@ -10,10 +10,51 @@ import {
 import { GithubSignupButton } from "../../components/buttons/github-signup-button";
 import { SignupButton } from "../../components/buttons/signup-button";
 import "./signup-form-styles.scss";
-import { SignupFormViewModel } from "../../view-models/SignupFormViewModel";
+import { createUser, UserRecord } from "../../services/user-service";
+import AuthService from "../../services/auth-service";
 
-const SignupFormView = () => {
-  const viewModel = new SignupFormViewModel();
+class RegistrationFormViewModel {
+  email: string = "";
+  password: string = "";
+  name: string = "";
+
+  setName(name: string) {
+    this.name = name;
+  }
+
+  setEmail(email: string) {
+    this.email = email;
+  }
+
+  setPassword(password: string) {
+    this.password = password;
+  }
+
+  async registerUser() {
+    const user = {
+      email: this.email,
+      password: this.password,
+      passwordConfirm: this.password,
+      name: this.name,
+    } as UserRecord;
+
+    try {
+      console.log("Creating user:", user);
+      await createUser(user);
+      await AuthService.login({
+        identity: user.email,
+        password: user.password,
+      }).then((response) => {
+        console.log(response?.token);
+      });
+    } catch (error) {
+      console.error("Failed to create user:", error);
+    }
+  }
+}
+
+const RegistrationFormView = () => {
+  const viewModel = new RegistrationFormViewModel();
 
   return (
     <FormControl
@@ -68,7 +109,7 @@ const SignupFormView = () => {
           <Flex justify="center" direction="column" gap={5} width="100%">
             <SignupButton
               onClick={() => {
-                viewModel.createUser();
+                viewModel.registerUser();
               }}
             />
             <GithubSignupButton />
@@ -78,4 +119,5 @@ const SignupFormView = () => {
     </FormControl>
   );
 };
-export default SignupFormView;
+
+export default RegistrationFormView;
