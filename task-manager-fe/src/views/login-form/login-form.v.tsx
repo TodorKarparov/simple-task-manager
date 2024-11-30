@@ -3,53 +3,23 @@ import {
   Container,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
   Input,
 } from "@chakra-ui/react";
 import { GithubSignupButton } from "../../components/buttons/github-signup-button";
 import { SigninButton } from "../../components/buttons/signin-button";
-import userStore from "../../stores/user.store";
-import { useNavigate, NavigateFunction } from "react-router-dom";
-import authService from "../../services/auth-service";
-import { AuthResponse } from "../../dto/response/auth-response.dto";
+import { observer } from "mobx-react-lite";
+import LoginFormViewModel from "../../view-models/login-form.vm";
+import React from "react";
 
-class LoginFormViewModel {
-  private email: string = "";
-  private password: string = "";
-  private navigate: NavigateFunction;
 
-  constructor(navigate: NavigateFunction) {
-    this.navigate = navigate;
-  }
-
-  setEmail(email: string) {
-    this.email = email;
-  }
-
-  setPassword(password: string) {
-    this.password = password;
-  }
-
-  async loginUser() {
-    try {
-      await authService
-        .login({
-          identity: this.email,
-          password: this.password,
-        })
-        .then(() => {
-          console.log("User logged in successfully:", userStore.getName);
-          this.navigate("/");
-        });
-    } catch (error) {
-      console.error("Failed to create user:", error);
-    }
-  }
+interface SigninFormViewProps {
+  viewModel: LoginFormViewModel;
 }
 
-const SigninFormView = () => {
-  const viewModel = new LoginFormViewModel(useNavigate());
+const SigninFormView: React.FC<SigninFormViewProps> = (props: SigninFormViewProps) => {
 
   return (
     <FormControl
@@ -63,6 +33,8 @@ const SigninFormView = () => {
       paddingLeft="48px"
       paddingRight="48px"
       paddingBottom="36px"
+      isRequired={true}
+      isInvalid={!props.viewModel.isEmailValid}
     >
       <Container padding="0px 0">
         <Flex direction="column" align="center" height="100%" gap="2rem">
@@ -76,27 +48,34 @@ const SigninFormView = () => {
             <Box width="100%">
               <FormLabel color="#8797A8">Email address</FormLabel>
               <Input
+                id="email"
                 type="email"
                 placeholder="e.g. yourname@mail.com"
                 borderRadius="10px"
+                isInvalid={!props.viewModel.isEmailValid}
                 onChange={(e) => {
-                  viewModel.setEmail(e.target.value);
+                  props.viewModel.setEmail(e.target.value);
                 }}
               />
+              {!props.viewModel.isEmailValid && (
+                <FormErrorMessage>Please enter a valid email address!</FormErrorMessage>
+              )}
             </Box>
             <Box width="100%">
               <FormLabel color="#8797A8">Password</FormLabel>
               <Input
+                id="password"
                 type="password"
                 borderRadius="10px"
-                onChange={(e) => viewModel.setPassword(e.target.value)}
+                onChange={(e) => props.viewModel.setPassword(e.target.value)}
+                isInvalid={false}
               />
             </Box>
           </Flex>
           <Flex justify="center" direction="column" gap={5} width="100%">
             <SigninButton
               onClick={() => {
-                viewModel.loginUser();
+                props.viewModel.loginUser();
               }}
             />
             <GithubSignupButton />
@@ -106,4 +85,5 @@ const SigninFormView = () => {
     </FormControl>
   );
 };
-export default SigninFormView;
+
+export default observer(SigninFormView);

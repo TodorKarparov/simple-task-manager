@@ -5,7 +5,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import HomePage from "./pages/home/HomePage.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RegistrationPage from "./pages/signup/SignupPage.tsx";
-import SigninPage from "./pages/signin/SigninPage.tsx";
+import SigninPage from "./pages/login/login.page.tsx";
 
 const router = createBrowserRouter([
   {
