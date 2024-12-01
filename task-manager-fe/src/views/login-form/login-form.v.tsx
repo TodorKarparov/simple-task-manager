@@ -9,7 +9,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { GithubSignupButton } from "../../components/buttons/github-signup-button";
-import { SigninButton } from "../../components/buttons/signin-button";
+import { LoginButton } from "../../components/buttons/signin-button";
 import { observer } from "mobx-react-lite";
 import LoginFormViewModel from "../../view-models/login-form.vm";
 import React from "react";
@@ -73,7 +73,7 @@ const LoginFormView: React.FC<SigninFormViewProps> = (props: SigninFormViewProps
             </Box>
           </Flex>
           <Flex justify="center" direction="column" gap={5} width="100%">
-            <SigninButton
+            <LoginButton
               onClick={() => {
                 props.viewModel.loginUser();
               }}
