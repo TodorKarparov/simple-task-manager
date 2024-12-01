@@ -19,7 +19,7 @@ interface SigninFormViewProps {
   viewModel: LoginFormViewModel;
 }
 
-const SigninFormView: React.FC<SigninFormViewProps> = (props: SigninFormViewProps) => {
+const LoginFormView: React.FC<SigninFormViewProps> = (props: SigninFormViewProps) => {
 
   return (
     <FormControl
@@ -86,4 +86,4 @@ const SigninFormView: React.FC<SigninFormViewProps> = (props: SigninFormViewProp
   );
 };
 
-export default observer(SigninFormView);
+export default observer(LoginFormView);

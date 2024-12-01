@@ -4,8 +4,8 @@ import "./index.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import HomePage from "./pages/home/HomePage.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RegistrationPage from "./pages/signup/SignupPage.tsx";
-import SigninPage from "./pages/login/login.page.tsx";
+import RegistrationPage from "./pages/signup/RegistrationPage.tsx";
+import LoginPage from "./pages/login/login.page.tsx";
 
 const router = createBrowserRouter([
   {
@@ -13,12 +13,12 @@ const router = createBrowserRouter([
     element: <HomePage />,
   },
   {
-    path: "/signup",
+    path: "/register",
     element: <RegistrationPage />,
   },
   {
-    path: "/signin",
-    element: <SigninPage />,
+    path: "/login",
+    element: <LoginPage />,
   },
 ]);
 
