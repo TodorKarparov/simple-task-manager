@@ -5,3 +5,6 @@ build-image:
 
 run-backend:
 	bash ./backend/run_backend.sh
+
+run-frontend:
+	cd task-manager-fe && pnpm run dev
